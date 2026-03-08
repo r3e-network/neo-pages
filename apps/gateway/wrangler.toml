@@ -1,0 +1,12 @@
+name = "neopages-gateway"
+main = "src/index.ts"
+compatibility_date = "2026-03-06"
+workers_dev = true
+
+[vars]
+ROOT_DOMAIN = "neopages.dev"
+DASHBOARD_ORIGIN = "http://localhost:3000"
+NEOFS_GATEWAY_ORIGIN = "http://http.fs.neo.org/gw"
+SUPABASE_URL = "https://example.supabase.co"
+SUPABASE_ANON_KEY = "replace-me"
+CACHE_TTL_SECONDS = "3600"

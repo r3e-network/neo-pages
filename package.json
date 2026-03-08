@@ -1,0 +1,53 @@
+{
+  "name": "neopages",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev:web": "next dev ./apps/web",
+    "build:web": "next build ./apps/web",
+    "start:web": "next start ./apps/web",
+    "dev:builder": "tsx watch apps/builder/src/server.ts",
+    "build:builder": "tsup apps/builder/src/server.ts --format esm --target node24 --out-dir dist/apps/builder --clean",
+    "start:builder": "node dist/apps/builder/server.js",
+    "dev:gateway": "wrangler dev --config apps/gateway/wrangler.toml",
+    "build:gateway": "tsup apps/gateway/src/index.ts --format esm --target es2022 --out-dir dist/apps/gateway",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p apps/web/tsconfig.json --noEmit",
+    "test": "node node_modules/vitest/vitest.mjs run",
+    "build": "npm run typecheck && npm run test && npm run build:web && npm run build:builder && npm run build:gateway",
+    "dev:web:docker": "next dev ./apps/web --hostname 0.0.0.0 --port 3000",
+    "dev:builder:docker": "tsx apps/builder/src/server.ts",
+    "dev:gateway:docker": "tsx apps/gateway/src/dev-server.ts",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down -v",
+    "docker:logs": "docker compose logs -f",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status",
+    "supabase:reset": "supabase db reset --no-seed",
+    "supabase:lint": "supabase db lint --fail-on error",
+    "supabase:env": "tsx scripts/sync-supabase-env.ts",
+    "supabase:bootstrap": "npm run supabase:start && npm run supabase:env",
+    "github:refresh-cache": "tsx scripts/refresh-github-cache.ts",
+    "webhooks:retry": "tsx scripts/retry-project-webhooks.ts",
+    "schedules:run": "tsx scripts/run-project-schedules.ts",
+    "webhooks:retry:organizations": "tsx scripts/retry-organization-webhooks.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "esbuild": "^0.27.3",
+    "jsdom": "^28.1.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.7"
+  }
+}
