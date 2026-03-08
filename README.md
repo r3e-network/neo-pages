@@ -11,6 +11,18 @@ NeoPages is a Web3 hosting control plane that lets developers deploy frontend ap
 - `supabase`: SQL schema for projects, deployments, domains, gateway lookups, and GitHub App installations
 - `scripts/seed-demo.ts`: repeatable Supabase + local artifact seeding for demos
 
+## Deploying to Vercel (Dashboard)
+
+The `apps/web` application is the primary control panel and is designed to run seamlessly on Vercel.
+
+1. Import your GitHub repository to Vercel.
+2. Set the **Root Directory** to `apps/web`.
+3. Ensure the Framework Preset is set to **Next.js**.
+4. Ensure you set your Supabase environment variables (`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`) in the Vercel project settings.
+
+Vercel will automatically detect the Next.js app in the `apps/web` directory, install all workspace dependencies, and build it using the configuration provided in `vercel.json`.
+
+
 ## Quick start
 
 1. Copy `.env.example` to `.env` and fill the Supabase values you want to use.
