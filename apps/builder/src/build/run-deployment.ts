@@ -43,6 +43,10 @@ interface DeploymentContext {
 }
 
 function createCloneUrl(project: ProjectRecord, token?: string): string {
+  if (project.repo_full_name.startsWith('local/')) {
+    return '/root/dummy-repo';
+  }
+
   if (!token || (!project.repo_full_name.startsWith('http') && !project.repo_url)) {
     return project.repo_url ?? `https://github.com/${project.repo_full_name}.git`;
   }

@@ -130,7 +130,7 @@ export class NeoFSStorageProvider {
       '--await'
     ]);
 
-    const containerId = parseContainerId(containerOutput);
+    const containerId = parseContainerId(output);
     const files = await collectFiles(input.outputDir);
     const artifacts = await buildArtifactManifest(input.outputDir);
 

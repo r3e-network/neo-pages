@@ -11,13 +11,15 @@ add column if not exists preview_alias text;
 
 create index if not exists deployments_preview_alias_created_at_idx on public.deployments (preview_alias, created_at desc);
 
+drop view if exists public.gateway_routes;
+
 create or replace view public.gateway_routes as
 select
   p.id as project_id,
   p.subdomain as host,
   p.container_id,
   p.deployment_url,
-  p.status
+  p.status::text as status
 from public.projects p
 where p.container_id is not null
 union all
@@ -26,7 +28,7 @@ select
   d.host,
   p.container_id,
   p.deployment_url,
-  p.status
+  p.status::text as status
 from public.domains d
 join public.projects p on p.id = d.project_id
 where p.container_id is not null
@@ -37,7 +39,7 @@ select
   previews.preview_alias as host,
   previews.container_id,
   previews.deployment_url,
-  previews.status
+  previews.status::text as status
 from (
   select distinct on (d.preview_alias)
     d.project_id,
