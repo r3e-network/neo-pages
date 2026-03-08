@@ -1,5 +1,19 @@
 export function getAppUrl(): string {
-  return process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000';
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return process.env.NEXT_PUBLIC_APP_URL;
+  }
+  
+  const vercelProdUrl = process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  if (vercelProdUrl) {
+    return `https://${vercelProdUrl}`;
+  }
+
+  const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL ?? process.env.VERCEL_URL;
+  if (vercelUrl) {
+    return `https://${vercelUrl}`;
+  }
+
+  return 'http://localhost:3000';
 }
 
 export function getPublicSupabaseConfig() {
