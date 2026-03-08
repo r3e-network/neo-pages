@@ -1,0 +1,7 @@
+apps/builder
+apps/gateway
+data
+docs
+scripts
+compose.yaml
+Dockerfile
