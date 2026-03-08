@@ -114,7 +114,7 @@ export class NeoFSStorageProvider {
       throw new Error('NeoFS backend requires NEOFS_RPC_ENDPOINT and NEOFS_WALLET_PATH');
     }
 
-    const containerOutput = await runCommand(this.config.neofsCliBin, [
+    const output = await runCommand(this.config.neofsCliBin, [
       'container',
       'create',
       '--rpc-endpoint',
@@ -125,11 +125,9 @@ export class NeoFSStorageProvider {
       this.config.neofsContainerBasicAcl,
       '--policy',
       this.config.neofsContainerPolicy,
-      '--attribute',
-      '__NEOFS__WEB_INDEX=index.html',
-      '--attribute',
-      '__NEOFS__WEB_ERROR=404.html',
-      '--json'
+      '--attributes',
+      '__NEOFS__WEB_INDEX=index.html,__NEOFS__WEB_ERROR=404.html',
+      '--await'
     ]);
 
     const containerId = parseContainerId(containerOutput);
