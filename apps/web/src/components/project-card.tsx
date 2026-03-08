@@ -30,13 +30,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {project.latestDeployment?.commit_message ?? 'Waiting for the first successful deployment.'}
       </p>
 
-      <div className="project-card__actions">
-        <Link href={`/projects/${project.id}`} className="link-button">
+      <div className="project-card__actions" style={{ display: 'flex', gap: '12px' }}>
+        <Link href={`/projects/${project.id}`} className="button" style={{ flex: 1 }}>
           View project
         </Link>
         {(project.latestDeployment?.deployment_url ?? project.deployment_url) ? (
-          <a className="link-button" href={project.latestDeployment?.deployment_url ?? project.deployment_url ?? '#'} target="_blank" rel="noreferrer">
-            Open latest
+          <a className="button button--muted" style={{ flex: 1 }} href={project.latestDeployment?.deployment_url ?? project.deployment_url ?? '#'} target="_blank" rel="noreferrer">
+            Visit
           </a>
         ) : null}
       </div>
