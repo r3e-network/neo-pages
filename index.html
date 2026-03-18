@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeoPages</title>
+    <meta
+      name="description"
+      content="NeoPages reduced to one static HTML page with no JavaScript and no app runtime."
+    />
+    <style>
+      :root {
+        --bg: #f6f1e7;
+        --card: #fffaf2;
+        --text: #181410;
+        --muted: #665c50;
+        --line: #ddd2c3;
+        --accent: #8b3d20;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Baskerville, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      }
+
+      main {
+        width: min(720px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 64px 0 80px;
+      }
+
+      h1,
+      h2,
+      p,
+      ul {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2.8rem, 9vw, 4.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+      }
+
+      p,
+      li {
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      .eyebrow {
+        margin-bottom: 14px;
+        color: var(--accent);
+        font: 700 0.8rem/1.2 "Courier New", Courier, monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .card {
+        margin-top: 24px;
+        padding: 22px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .footer {
+        margin-top: 28px;
+        font-size: 0.95rem;
+      }
+
+      code {
+        color: var(--text);
+        font-family: "Courier New", Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Static HTML only</p>
+      <h1>NeoPages</h1>
+      <p>
+        This repository now serves one static page. There is no JavaScript, no framework runtime, no API layer, and no build pipeline behind the live site.
+      </p>
+
+      <section class="card">
+        <h2>Current shape</h2>
+        <ul>
+          <li>One page: <code>index.html</code></li>
+          <li>No scripts, hydration, or generated bundles</li>
+          <li>Optional Vercel config in <code>vercel.json</code></li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Local preview</h2>
+        <p>Serve the repository root with <code>python3 -m http.server 4173</code> and open <code>http://localhost:4173</code>.</p>
+      </section>
+
+      <section class="card">
+        <h2>Editing</h2>
+        <p>Edit this file directly when you want to change the live site.</p>
+      </section>
+
+      <p class="footer">
+        <a href="https://github.com/r3e-network/neo-pages">Repository</a>
+      </p>
+    </main>
+  </body>
+</html>

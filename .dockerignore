@@ -1,9 +1,0 @@
-node_modules
-apps/web/.next
-.next
-dist
-coverage
-.git
-.wrangler
-.tmp
-data/storage
